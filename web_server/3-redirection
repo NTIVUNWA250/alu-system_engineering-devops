@@ -13,7 +13,7 @@ server {
     root /var/www/html;
     index index.html index.htm;
 
-    server_name _;
+    server_name rentivunwa.tech www.rentivunwa250.tech;
 
     location / {
         try_files $uri $uri/ =404;
@@ -21,7 +21,7 @@ server {
 
     # Redirect /redirect_me to another page
     location /redirect_me {
-        return 301 https://www.example.com/;
+        return 301 https://www.rentivunwa250.tech/;
     }
 }
 EOF'

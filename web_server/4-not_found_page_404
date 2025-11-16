@@ -8,6 +8,20 @@ set -e
 sudo apt-get update -y
 sudo apt-get install -y nginx
 
+sudo tee /var/www/html/custom_404.html > /dev/null <<'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>404 Not Found</title>
+</head>
+<body>
+    <h1>Ceci n'est pas une page</h1>
+</body>
+</html>
+EOF
+
+
 # Configure Nginx default site
 bash -c 'cat > /etc/nginx/sites-available/default << "EOF"
 server {
@@ -23,9 +37,10 @@ server {
         try_files $uri $uri/ =404;
     }
 
-    # Redirect /redirect_me to another page
-    location /redirect_me {
-        return 301 http://www.rentivunwa250.tech/;
+    # Custom error page
+    error_page 404 /custome_404.html;
+    location = /custome_404.html {
+    	internal;
     }
 }
 EOF'

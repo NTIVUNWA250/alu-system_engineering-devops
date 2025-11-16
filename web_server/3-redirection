@@ -25,7 +25,7 @@ server {
 
     # Redirect /redirect_me to another page
     location /redirect_me {
-        return 301 https://www.rentivunwa250.tech/;
+        return 301 http://www.rentivunwa250.tech/;
     }
 }
 EOF'

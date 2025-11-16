@@ -1,0 +1,44 @@
+#!/bin/bash
+# Configure Ubuntu with Nginx and add a custom HTTP response header
+# Requirements:
+# - Custom header: X-Served-By
+# - Value: hostname of the server
+# - Works on web-01 and web-02
+# - Ignore SC2154 for shellcheck
+
+set -e  # Exit immediately if a command fails
+set -o pipefail
+
+# Update and install Nginx
+sudo apt update -y
+sudo apt install -y nginx
+
+# Capture the hostname of the server
+HOSTNAME=$(hostname)
+
+# Configure Nginx default site with custom header
+sudo tee /etc/nginx/sites-available/default > /dev/null <<EOF
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html;
+
+    server_name _;
+
+    location / {
+        add_header X-Served-By $HOSTNAME;
+        try_files \$uri \$uri/ =404;
+    }
+}
+EOF
+
+# Test Nginx configuration
+sudo nginx -t
+
+# Restart Nginx to apply changes
+sudo systemctl restart nginx
+
+echo "✅ Custom HTTP response header configured successfully!"
+

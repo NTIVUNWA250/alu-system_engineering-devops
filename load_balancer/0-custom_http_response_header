@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Configure Ubuntu with Nginx and add a custom HTTP response header
 # Requirements:
 # - Custom header: X-Served-By

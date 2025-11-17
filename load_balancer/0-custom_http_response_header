@@ -12,7 +12,14 @@ set -o pipefail
 # Update and install Nginx
 sudo apt update -y
 sudo apt install -y nginx
-sudo systemctl restart nginx
+
+sudo apt-get install -y ufw
+
+# Configure firewall
+sudo ufw enable
+sudo ufw allow 'Nginx HTTP'
+sudo ufw allow 'OpenSSH'
+
 # Capture the hostname of the server
 HOSTNAME=$(hostname)
 

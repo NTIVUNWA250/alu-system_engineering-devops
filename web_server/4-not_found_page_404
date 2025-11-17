@@ -9,7 +9,11 @@ sudo apt-get update -y
 sudo apt-get install -y nginx
 
 sudo tee /var/www/html/custom_404.html > /dev/null <<'EOF'
-Ceci n'est pas une page
+<html>
+  <body>
+    <h1>ici n'est pas ...</h1>
+  </body>
+</html>
 EOF
 
 
@@ -20,7 +24,7 @@ server {
     listen [::]:80 default_server;
 
     root /var/www/html;
-    index index.html index.htm;
+    index index.html;
 
     server_name _;
 
@@ -31,7 +35,8 @@ server {
     # Custom error page
     error_page 404 /custome_404.html;
     location = /custome_404.html {
-    	internal;
+    	root /var/www/html;
+	internal;
     }
 }
 EOF'

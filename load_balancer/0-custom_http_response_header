@@ -12,7 +12,7 @@ set -o pipefail
 # Update and install Nginx
 sudo apt update -y
 sudo apt install -y nginx
-
+sudo systemctl restart nginx
 # Capture the hostname of the server
 HOSTNAME=$(hostname)
 

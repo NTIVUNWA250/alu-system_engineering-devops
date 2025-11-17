@@ -15,7 +15,7 @@ server {
     listen [::]:80 default_server;
 
     root /var/www/html;
-    index index.html index.htm;
+    index index.html;
 
     server_name _;
 
@@ -25,7 +25,7 @@ server {
 
     # Redirect /redirect_me to another page
     location /redirect_me {
-        return 301 http://rentivunwa250.tech/$request_uri;
+        return 301 http://rentivunwa250.tech;
     }
 }
 EOF'

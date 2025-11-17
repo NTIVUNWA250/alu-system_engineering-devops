@@ -31,5 +31,5 @@ server {
 EOF'
 
 # Restart Nginx to apply changes
-sudo systemctl restart nginx
+sudo service nginx restart
 

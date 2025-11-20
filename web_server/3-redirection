@@ -4,18 +4,18 @@
 # Exit on error
 set -e
 
-sudo apt-get update -y -qq && \
-    sudo apt-get install nginx -y
-sudo apt-get install -y ufw
+apt-get update -y -qq && \
+   apt-get install nginx -y
+apt-get install -y ufw
 
 echo -e "\nSetting up some minor stuff.\n"
 
 # Enable firewall and allow Nginx HTTP
-sudo ufw enable
-sudo ufw allow 'Nginx HTTP'
+ufw enable
+ufw allow 'Nginx HTTP'
 
 # Starting nginx service
-sudo service nginx start
+service nginx start
 
 # Configure Nginx default site
 bash -c 'cat > /etc/nginx/sites-available/default << "EOF"

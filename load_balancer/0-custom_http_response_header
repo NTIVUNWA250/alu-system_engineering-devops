@@ -10,15 +10,15 @@ set -e  # Exit immediately if a command fails
 set -o pipefail
 
 # Update and install Nginx
-sudo apt update -y
-sudo apt install -y nginx
+apt update -y
+apt install -y nginx
 
-sudo apt-get install -y ufw
+apt-get install -y ufw
 
 # Configure firewall
-sudo ufw enable
-sudo ufw allow 'Nginx HTTP'
-sudo ufw allow 'OpenSSH'
+ufw enable
+ufw allow 'Nginx HTTP'
+ufw allow 'OpenSSH'
 
 # Capture the hostname of the server
 HOSTNAME=$(hostname)
@@ -42,10 +42,10 @@ server {
 EOF
 
 # Test Nginx configuration
-sudo nginx -t
+nginx -t
 
 # Restart Nginx to apply changes
-sudo service nginx restart
+service nginx restart
 
 echo "✅ Custom HTTP response header configured successfully!"
 

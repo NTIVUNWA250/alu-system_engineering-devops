@@ -5,8 +5,8 @@
 set -e
 
 # Update package list and install Nginx
-sudo apt-get update -y
-sudo apt-get install -y nginx
+apt-get update -y
+apt-get install -y nginx
 
 # Configure Nginx default site
 bash -c 'cat > /etc/nginx/sites-available/default << "EOF"
@@ -31,5 +31,5 @@ server {
 EOF'
 
 # Restart Nginx to apply changes
-sudo service nginx restart
+service nginx restart
 echo -e "\nRedirection setup completed.\n"

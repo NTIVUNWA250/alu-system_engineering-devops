@@ -5,8 +5,8 @@
 set -e
 
 # Update package list and install Nginx
-sudo apt-get update -y
-sudo apt-get install -y nginx
+apt-get update -y
+apt-get install -y nginx
 
 sudo tee /var/www/html/custom_404.html > /dev/null <<'EOF'
 <html>
@@ -32,9 +32,14 @@ server {
         try_files $uri $uri/ =404;
     }
 
+    # Redirect /redirect_me to another page
+    location /redirect_me {
+        return 301 http://rentivunwa250.tech;
+    }
+
     # Custom error page
-    error_page 404 /custome_404.html;
-    location = /custome_404.html {
+    error_page 404 /custom_404.html;
+    location = /custom_404.html {
     	root /var/www/html;
 	internal;
     }
@@ -42,5 +47,5 @@ server {
 EOF'
 
 # Restart Nginx without using systemctl
-sudo service nginx restart
+service nginx restart
 

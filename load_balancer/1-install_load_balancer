@@ -9,8 +9,8 @@ set -e
 set -o pipefail
 
 # Update system and install HAProxy
-apt update -y
-apt install -y haproxy
+apt-get update -y
+apt-get install -y haproxy
 
 # Enable HAProxy to start at boot
 systemctl enable haproxy
@@ -58,6 +58,6 @@ backend web_back
 EOF
 
 # Restart HAProxy to apply changes
-systemctl restart haproxy
+service haproxy restart
 
 echo "✅ HAProxy installed and configured successfully!"

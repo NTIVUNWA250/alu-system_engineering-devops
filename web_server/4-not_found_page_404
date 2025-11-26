@@ -8,12 +8,12 @@ set -e
 apt-get update -y
 apt-get install -y nginx
 
+# Give the user ownership to website files for easy editing
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+
 sudo tee /var/www/html/custom_404.html > /dev/null <<'EOF'
-<html>
-  <body>
-    <h1>ici n'est pas ...</h1>
-  </body>
-</html>
+Ceci n'est pas une page
 EOF
 
 

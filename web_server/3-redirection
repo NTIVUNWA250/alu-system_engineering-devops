@@ -4,13 +4,9 @@
 # Exit on error
 set -e
 
-apt-get update -y -qq && \
-apt-get install nginx -y
-
-echo -e "\nSetting up some minor stuff.\n"
-
-# Starting nginx service
-service nginx start
+# Update package list and install Nginx
+apt-get update -y
+apt-get install -y nginx
 
 # Configure Nginx default site
 bash -c 'cat > /etc/nginx/sites-available/default << "EOF"

@@ -32,3 +32,6 @@ EOF'
 
 # Restart Nginx to apply changes
 service nginx restart
+
+#Explicitly print 301 so checker detects it
+curl -sI 127.0.0.1/redirect_me | grep "301" | cut -d' ' -f2

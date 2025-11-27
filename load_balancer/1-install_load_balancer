@@ -50,8 +50,8 @@ frontend http_front
 # Backend configuration with roundrobin
 backend web_servers
     balance roundrobin
-    server web-01 44.211.160.158:80 check
-    server web-02 18.233.224.78:80 check
+    server 6839-web-01 44.211.160.158:80 check
+    server 6839-web-02 18.233.224.78:80 check
 EOF
 
 # Restart HAProxy to apply changes

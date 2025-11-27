@@ -10,10 +10,6 @@ apt-get install -y ufw
 
 echo -e "\nSetting up some minor stuff.\n"
 
-# Enable firewall and allow Nginx HTTP
-ufw enable
-ufw allow 'Nginx HTTP'
-
 # Starting nginx service
 service nginx start
 

@@ -9,11 +9,8 @@ set -e
 set -o pipefail
 
 # Update system and install HAProxy
-apt-get update -y
-apt-get install -y haproxy
-
-# Enable HAProxy to start at boot
-systemctl enable haproxy
+sudo apt-get update -y
+sudo apt-get install haproxy -y
 
 # Configure HAProxy
 sudo tee /etc/haproxy/haproxy.cfg > /dev/null <<'EOF'
@@ -51,7 +48,7 @@ frontend http_front
     default_backend web_back
 
 # Backend configuration with roundrobin
-backend web_back
+backend web_servers
     balance roundrobin
     server web-01 44.211.160.158:80 check
     server web-02 18.233.224.78:80 check
@@ -59,5 +56,3 @@ EOF
 
 # Restart HAProxy to apply changes
 service haproxy restart
-
-echo "✅ HAProxy installed and configured successfully!"

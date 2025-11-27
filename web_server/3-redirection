@@ -6,7 +6,6 @@ set -e
 
 apt-get update -y -qq && \
 apt-get install nginx -y
-apt-get install -y ufw
 
 echo -e "\nSetting up some minor stuff.\n"
 

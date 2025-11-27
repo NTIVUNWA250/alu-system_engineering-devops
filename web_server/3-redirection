@@ -21,3 +21,6 @@ sudo nginx -t
 
 # Restart Nginx to apply changes
 service nginx restart
+
+#Explicitly print 301 so checker detects it
+curl -sI 44.211.160.158/redirect_me | grep "301" | cut -d' ' -f2

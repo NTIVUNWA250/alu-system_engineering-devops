@@ -60,5 +60,5 @@ sudo systemctl stop nginx
 sudo systemctl disable nginx
 
 echo -e "web-01 web-02"
-echo "web-01"
-echo "web-02"
+echo "44.211.160.158 6839-web-01" | sudo tee -a /etc/hosts
+echo "18.233.224.78 6839-web-02" | sudo tee -a /etc/hosts

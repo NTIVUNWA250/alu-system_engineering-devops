@@ -11,7 +11,7 @@ set -o pipefail
 # Update system and install HAProxy
 sudo apt-get update -y
 sudo apt-get install haproxy -y
-
+sudo systemctl stop nginx
 # Configure HAProxy
 sudo tee /etc/haproxy/haproxy.cfg > /dev/null <<'EOF'
 # Global settings
@@ -45,7 +45,7 @@ defaults
 # Frontend configuration
 frontend http_front
     bind *:80
-    default_backend web_back
+    default_backend web_servers
 
 # Backend configuration with roundrobin
 backend web_servers
@@ -55,4 +55,6 @@ backend web_servers
 EOF
 
 # Restart HAProxy to apply changes
-service haproxy restart
+sudo service haproxy restart
+sudo systemctl stop nginx
+sudo systemctl disable nginx

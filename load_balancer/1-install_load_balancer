@@ -58,3 +58,7 @@ EOF
 sudo service haproxy restart
 sudo systemctl stop nginx
 sudo systemctl disable nginx
+
+echo -e "web-01 web-02"
+echo "web-01"
+echo "web-02"
